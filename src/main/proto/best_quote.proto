@@ -1,0 +1,28 @@
+/*
+    @Author: Bhaskar S
+    @Blog:   https://www.polarsparc.com
+    @Date:   xx Dec 2020
+*/
+
+syntax = "proto3";
+
+package clientstream;
+
+option go_package = "polarsparc.com/grpc/clientstream/quotepb";
+
+option java_multiple_files = true;
+option java_package = "com.polarsparc.gcs";
+
+message BestQuoteRequest {
+  string provider = 1;
+  int32 age = 2;
+}
+
+message BestQuoteResponse {
+  string provider = 1;
+  double price = 2;
+}
+
+service BestQuoteService {
+  rpc getBestQuote(stream BestQuoteRequest) returns (BestQuoteResponse);
+}

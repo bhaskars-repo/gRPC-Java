@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package serverstream;
+
+option go_package = "polarsparc.com/grpc/serverstream/currencypb";
+
+option java_multiple_files = true;
+option java_package = "com.polarsparc.gss";
+
+message CurrencyRateRequest {
+  string from = 1;
+  string to = 2;
+}
+
+message CurrencyRateResponse {
+  string agent = 1;
+  string from = 2;
+  string to = 3;
+  double rate = 4;
+}
+
+service CurrencyService {
+  rpc getCurrencyRate(CurrencyRateRequest) returns (stream CurrencyRateResponse);
+}

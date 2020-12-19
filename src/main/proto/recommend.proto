@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package recommend;
+
+option go_package = "polarsparc.com/grpc/bidirstream/bookspb";
+
+option java_multiple_files = true;
+option java_package = "com.polarsparc.gbd";
+
+message BookRecommendRequest {
+  string topic = 1;
+}
+
+message BookRecommendResponse {
+  string topic = 1;
+  string title = 2;
+  string isbn = 3;
+}
+
+service BookRecommendService {
+  rpc recommendedBooks(stream BookRecommendRequest) returns (stream BookRecommendResponse);
+}
